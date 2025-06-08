@@ -1,42 +1,80 @@
-# Wine Quality Prediction with Keras, Hyperopt, and MLflow
+# 🍷 Wine Quality Prediction with Keras, Hyperopt, and MLflow
 
-This project demonstrates how to build, tune, and track a deep learning model for wine quality prediction using Keras, Hyperopt, and MLflow. The workflow includes hyperparameter optimization, experiment tracking, model registration, and batch prediction.
+This project demonstrates a complete MLOps workflow for predicting wine quality using a deep learning model. It covers data preparation, model building, hyperparameter tuning, experiment tracking, model registration, and batch prediction—all orchestrated in a reproducible notebook.
 
-## Features
+---
 
-- **Data:** Uses the [Wine Quality - White](https://archive.ics.uci.edu/ml/datasets/wine+quality) dataset.
-- **Model:** Simple feedforward neural network (ANN) built with Keras.
-- **Hyperparameter Tuning:** Uses Hyperopt for learning rate and momentum search.
-- **Experiment Tracking:** All runs and metrics are logged to MLflow.
-- **Model Serving:** Best model can be loaded and used for batch predictions.
+## 🚀 Project Overview
 
-## Quickstart
+- **Dataset:** [Wine Quality - White](https://archive.ics.uci.edu/ml/datasets/wine+quality)
+- **Model:** Feedforward neural network (Keras)
+- **Tuning:** Hyperopt for learning rate and momentum
+- **Tracking:** MLflow for parameters, metrics, and model artifacts
+- **Serving:** Load and predict with the best model
+
+---
+
+## 📂 File Structure
+
+```
+starter.ipynb      # Main notebook with all code and workflow
+requirements.txt   # (Optional) List of dependencies
+README.md          # Project documentation
+```
+
+---
+
+## 🛠️ Setup Instructions
 
 ### 1. Install Dependencies
 
+You can install all required packages using pip:
+
 ```bash
-pip install -r requirements.txt
-# or, inside the notebook:
-!pip install hyperopt mlflow keras scikit-learn pandas
+pip install hyperopt mlflow keras scikit-learn pandas
+```
+
+Or, run the first cell in the notebook:
+
+```python
+!pip install hyperopt
 ```
 
 ### 2. Run the Notebook
 
-Open `starter.ipynb` in VS Code or Jupyter and run all cells.
+Open `starter.ipynb` in VS Code or Jupyter and execute all cells sequentially.
 
-### 3. Main Steps
+---
 
-- **Load Data:** Download and split the wine quality dataset.
-- **Preprocess:** Split into train, validation, and test sets.
-- **Define Model:** Build a Keras ANN with normalization.
-- **Tune Hyperparameters:** Use Hyperopt to search for the best learning rate and momentum.
-- **Track Experiments:** Log parameters, metrics, and models to MLflow.
-- **Compare Runs:** Use the MLflow UI to compare experiment results.
-- **Register & Predict:** Load the best model and run predictions on new data.
+## 📊 Workflow Steps
 
-### 4. MLflow UI
+1. **Load Data:**  
+   Download and preview the wine quality dataset.
 
-To view your experiments, run:
+2. **Preprocess:**  
+   - Split into train, validation, and test sets.
+   - Separate features and target (`quality`).
+
+3. **Model Definition:**  
+   - Build a Keras ANN with normalization and dense layers.
+
+4. **Hyperparameter Tuning:**  
+   - Use Hyperopt to search for the best learning rate and momentum.
+   - Each trial is tracked as an MLflow run.
+
+5. **Experiment Tracking:**  
+   - Log parameters, metrics, and models to MLflow.
+   - Compare runs and select the best model.
+
+6. **Model Registration & Prediction:**  
+   - Load the best model from MLflow.
+   - Predict wine quality on new data (excluding the `quality` column).
+
+---
+
+## 📈 Using MLflow UI
+
+To visualize and compare experiment runs, launch the MLflow UI:
 
 ```bash
 mlflow ui
@@ -44,7 +82,9 @@ mlflow ui
 
 Then open [http://localhost:5000](http://localhost:5000) in your browser.
 
-## Example Prediction
+---
+
+## 🧪 Example: Batch Prediction
 
 ```python
 import mlflow
@@ -59,20 +99,21 @@ feature_data = data.drop("quality", axis=1)
 predictions = loaded_model.predict(feature_data)
 ```
 
-## File Structure
+---
 
-```
-starter.ipynb      # Main notebook with all code and workflow
-requirements.txt   # (Optional) List of dependencies
-README.md          # This file
-```
+## ⚠️ Troubleshooting
 
-## Notes
+- **Windows Permission Errors:**  
+  If you see permission errors (e.g., symlink or file access issues), try:
+  - Running VS Code or Jupyter as administrator.
+  - Setting `env_manager="local"` in MLflow prediction calls.
 
-- Ensure you only pass feature columns (not the target) to the model for prediction.
-- If you encounter permission errors on Windows, try running VS Code as administrator or set `env_manager="local"` in MLflow prediction calls.
+- **Prediction Shape Errors:**  
+  Always pass only the feature columns (not the target) to the model for prediction.
 
-## References
+---
+
+## 📚 References
 
 - [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
 - [Hyperopt Documentation](http://hyperopt.github.io/hyperopt/)
@@ -81,3 +122,10 @@ README.md          # This file
 
 ---
 
+## 🤝 Contributing
+
+Feel free to open issues or submit pull requests for improvements!
+
+---
+
+**Happy Experimenting!**
