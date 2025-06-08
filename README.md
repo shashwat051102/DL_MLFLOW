@@ -120,11 +120,6 @@ predictions = loaded_model.predict(feature_data)
 - [Keras Documentation](https://keras.io/)
 - [Wine Quality Dataset](https://archive.ics.uci.edu/ml/datasets/wine+quality)
 
----
-
-## 🤝 Contributing
-
-Feel free to open issues or submit pull requests for improvements!
 
 ---
 
